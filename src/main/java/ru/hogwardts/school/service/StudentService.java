@@ -2,47 +2,38 @@ package ru.hogwardts.school.service;
 
 import org.springframework.stereotype.Service;
 import ru.hogwardts.school.model.Student;
+import ru.hogwardts.school.repository.StudentRepository;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 
 @Service
 public class StudentService {
 
-    private final HashMap<Long, Student> students = new HashMap<>();
-    private long id = 0;
+    private final StudentRepository studentRepository;
+
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
 
     public Student createStudent(Student student) {
-        student.setId(++id);
-        students.put(id, student);
-        return student;
+        return studentRepository.save(student);
     }
 
     public Student findStudent(Long id) {
-        return students.get(id);
+        return studentRepository.findById(id).get();
     }
 
     public Student editStudent(Student student) {
-        if (students.containsKey(student.getId())) {
-            students.put(student.getId(), student);
-            return student;
-        }
-        return null;
+        return studentRepository.save(student);
     }
 
-    public Student deleteStudent(Long id) {
-        return students.remove(id);
+    public void deleteStudent(Long id) {
+        studentRepository.deleteById(id);
     }
 
     public Collection<Student> findStudentsByAge(int age) {
-        Collection<Student> studentCollection = new ArrayList<>();
-        for (Student student : students.values()) {
-            if (student.getAge() == age) {
-                studentCollection.add(student);
-            }
-        }
-        return studentCollection;
+        return studentRepository.findAll();
     }
 
 
