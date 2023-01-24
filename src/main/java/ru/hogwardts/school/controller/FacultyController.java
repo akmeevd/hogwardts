@@ -3,6 +3,7 @@ package ru.hogwardts.school.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.hogwardts.school.model.Faculty;
+import ru.hogwardts.school.model.Student;
 import ru.hogwardts.school.service.FacultyService;
 
 import java.util.Collection;
@@ -18,17 +19,17 @@ public class FacultyController {
     }
 
     @GetMapping("{id}")
-    public Faculty findStudent(@PathVariable long id) {
+    public Faculty findFaculty(@PathVariable long id) {
         return faculties.findFaculty(id);
     }
 
     @PostMapping
-    public Faculty createStudent(@RequestBody Faculty faculty) {
+    public Faculty createFaculty(@RequestBody Faculty faculty) {
         return faculties.createFaculty(faculty);
     }
 
     @PutMapping
-    public Faculty editStudent(@RequestBody Faculty faculty) {
+    public Faculty editFaculty(@RequestBody Faculty faculty) {
         return faculties.editFaculty(faculty);
     }
 
@@ -41,5 +42,16 @@ public class FacultyController {
     @GetMapping()
     public Collection<Faculty> findFacultiesByColor(@RequestParam String color) {
         return faculties.findFacultiesByColor(color);
+    }
+
+    @GetMapping("findFacultyByColorOrName")
+    public Collection<Faculty> findFacultiesByColorOrName(@RequestParam(required = false) String color,
+                                                          @RequestParam(required = false) String name) {
+        return faculties.findFacultiesByColorOrName(color, name);
+    }
+
+    @GetMapping("findFacultyByStudent")
+    public Faculty findFacultyByStudent(@RequestParam long id) {
+        return faculties.findFacultyByStudent(id);
     }
 }

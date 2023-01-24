@@ -2,10 +2,13 @@ package ru.hogwardts.school.service;
 
 import org.springframework.stereotype.Service;
 import ru.hogwardts.school.model.Faculty;
+import ru.hogwardts.school.model.Student;
 import ru.hogwardts.school.repository.FacultyRepository;
+import ru.hogwardts.school.repository.StudentRepository;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -15,6 +18,7 @@ public class FacultyService {
 
     public FacultyService(FacultyRepository facultyRepository) {
         this.facultyRepository = facultyRepository;
+
     }
 
     public Faculty createFaculty(Faculty faculty) {
@@ -30,11 +34,25 @@ public class FacultyService {
     }
 
     public void deleteFaculty(Long id) {
-       facultyRepository.deleteById(id);
+        facultyRepository.deleteById(id);
     }
 
     public Collection<Faculty> findFacultiesByColor(String color) {
         return facultyRepository.findAll();
     }
 
+    public Collection<Faculty> findFacultiesByColorOrName(String color, String name) {
+        return facultyRepository.findFacultiesByColorIgnoreCaseOrNameIgnoreCase(color, name);
+    }
+
+    public Faculty findFacultyByStudent(long id) {
+        for (Faculty faculty : facultyRepository.findAll()) {
+            for (Student student : faculty.getStudents()) {
+                if (student.getId() == id) {
+                    return student.getFaculty();
+                }
+            }
+        }
+        return null;
+    }
 }

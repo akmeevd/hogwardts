@@ -6,6 +6,7 @@ import ru.hogwardts.school.repository.StudentRepository;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class StudentService {
@@ -33,8 +34,20 @@ public class StudentService {
     }
 
     public Collection<Student> findStudentsByAge(int age) {
-        return studentRepository.findAll();
+        List<Student> students = new ArrayList<>();
+        for (Student student : studentRepository.findAll()) {
+            if (student.getAge() == age) {
+                students.add(student);
+            }
+        }
+        return students;
     }
 
+    public Collection<Student> findByAgeBetween(int min, int max) {
+        return studentRepository.findStudentByAgeBetween(min, max);
+    }
 
+    public Collection<Student> findStudentsByFaculty_Id(long id) {
+        return studentRepository.findStudentsByFaculty_Id(id);
+    }
 }
