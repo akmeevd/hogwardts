@@ -1,10 +1,10 @@
 package ru.hogwardts.school.model;
-
 import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Objects;
 
 @Entity
+@Table(name = "avatar")
 public class Avatar {
     @Id
     @GeneratedValue
@@ -14,8 +14,10 @@ public class Avatar {
     private String mediaType;
     @Lob
     private byte[] data;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "student_id")
     private Student student;
+
 
     public Long getId() {
         return id;
@@ -64,6 +66,7 @@ public class Avatar {
     public void setStudent(Student student) {
         this.student = student;
     }
+
 
     @Override
     public boolean equals(Object o) {
