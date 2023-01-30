@@ -2,6 +2,7 @@ package ru.hogwardts.school.service;
 
 import org.springframework.stereotype.Service;
 import ru.hogwardts.school.model.Student;
+import ru.hogwardts.school.repository.AvatarRepository;
 import ru.hogwardts.school.repository.StudentRepository;
 
 import java.util.ArrayList;
@@ -12,6 +13,8 @@ import java.util.List;
 public class StudentService {
 
     private final StudentRepository studentRepository;
+
+
 
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;

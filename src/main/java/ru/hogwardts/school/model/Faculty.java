@@ -1,9 +1,7 @@
 package ru.hogwardts.school.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
