@@ -1,7 +1,10 @@
 package ru.hogwardts.school.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.hogwardts.school.model.Student;
+//import ru.hogwardts.school.model.StudentsByDescOrder;
+import ru.hogwardts.school.model.StudentsByDescOrder;
 import ru.hogwardts.school.repository.AvatarRepository;
 import ru.hogwardts.school.repository.StudentRepository;
 
@@ -13,8 +16,6 @@ import java.util.List;
 public class StudentService {
 
     private final StudentRepository studentRepository;
-
-
 
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
@@ -53,4 +54,17 @@ public class StudentService {
     public Collection<Student> findStudentsByFaculty_Id(long id) {
         return studentRepository.findStudentsByFaculty_Id(id);
     }
+
+    public Integer getCountOfAllStudent() {
+        return studentRepository.getCountOfAllStudents();
+    }
+
+    public Double getAverageAgeOfStudents() {
+        return studentRepository.getAverageAgeOfStudents();
+    }
+
+    public List<StudentsByDescOrder> getFiveStudentsByDescOrder() {
+        return studentRepository.getFiveStudentsByDescOrder();
+    }
+
 }

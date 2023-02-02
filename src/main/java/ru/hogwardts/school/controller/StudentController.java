@@ -3,9 +3,12 @@ package ru.hogwardts.school.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.hogwardts.school.model.Student;
+//import ru.hogwardts.school.model.StudentsByDescOrder;
+import ru.hogwardts.school.model.StudentsByDescOrder;
 import ru.hogwardts.school.service.StudentService;
 
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("student")
@@ -43,13 +46,28 @@ public class StudentController {
         return students.findStudentsByAge(age);
     }
 
-    @GetMapping("findStudentsByAgeBetween")
+    @GetMapping("students-by-age-between")
     public Collection<Student> findByAgeBetween(@RequestParam int min, @RequestParam int max) {
         return students.findByAgeBetween(min, max);
     }
 
-    @GetMapping("findStudentByFaculty_Id")
+    @GetMapping("student-by-faculty-id")
     public Collection<Student> findStudentsByFaculty_Id(@RequestParam long id) {
         return students.findStudentsByFaculty_Id(id);
+    }
+
+    @GetMapping("count-of-all-students")
+    public Integer getCountAllStudents() {
+        return students.getCountOfAllStudent();
+    }
+
+    @GetMapping("average-age-of-students")
+    public Double getAverageAgeOfStudents() {
+        return students.getAverageAgeOfStudents();
+    }
+
+    @GetMapping("students-by-descending-order")
+    public List<StudentsByDescOrder> getFiveStudentsByDescOrder() {
+        return students.getFiveStudentsByDescOrder();
     }
 }

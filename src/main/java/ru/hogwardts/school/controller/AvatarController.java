@@ -15,6 +15,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
+
+import static org.springframework.http.MediaType.IMAGE_JPEG;
+import static org.springframework.http.MediaType.MULTIPART_FORM_DATA;
 
 @RestController
 public class AvatarController {
@@ -45,12 +49,20 @@ public class AvatarController {
     public void downloadAvatar(@PathVariable Long id, HttpServletResponse response) throws IOException {
         Avatar avatar = avatarService.findAvatar(id);
         Path pathFile = Path.of(avatar.getFilePath());
-        try(InputStream is = Files.newInputStream(pathFile);
-            OutputStream os = response.getOutputStream();){
+        try (InputStream is = Files.newInputStream(pathFile);
+             OutputStream os = response.getOutputStream()) {
             response.setStatus(200);
             response.setContentType(avatar.getMediaType());
             response.setContentLength((int) avatar.getFileSize());
             is.transferTo(os);
         }
     }
+
+    @GetMapping(value = "page-of-avatars")
+    public ResponseEntity<List<Avatar>> getAvatarsByPage(@RequestParam Integer page,
+                                                         @RequestParam Integer size) {
+        List<Avatar> avatars = (List<Avatar>) avatarService.findAvatarsByPage(page, size);
+        return ResponseEntity.ok(avatars);
+    }
 }
+
