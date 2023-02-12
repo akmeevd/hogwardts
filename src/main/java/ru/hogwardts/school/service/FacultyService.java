@@ -1,5 +1,7 @@
 package ru.hogwardts.school.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import ru.hogwardts.school.model.Faculty;
 import ru.hogwardts.school.model.Student;
@@ -16,36 +18,45 @@ public class FacultyService {
 
     private final FacultyRepository facultyRepository;
 
+    Logger logger = LoggerFactory.getLogger(FacultyService.class);
+
     public FacultyService(FacultyRepository facultyRepository) {
         this.facultyRepository = facultyRepository;
 
     }
 
     public Faculty createFaculty(Faculty faculty) {
+        getLogger("createFaculty");
         return facultyRepository.save(faculty);
     }
 
     public Faculty findFaculty(Long id) {
+        getLogger("findFaculty");
         return facultyRepository.findById(id).get();
     }
 
     public Faculty editFaculty(Faculty faculty) {
+        getLogger("editFaculty");
         return facultyRepository.save(faculty);
     }
 
     public void deleteFaculty(Long id) {
+        getLogger("deleteFaculty");
         facultyRepository.deleteById(id);
     }
 
     public Collection<Faculty> findFacultiesByColor(String color) {
-        return facultyRepository.findAll();
+        getLogger("findFacultiesByColor");
+        return facultyRepository.findFacultiesByColorIgnoreCase(color);
     }
 
     public Collection<Faculty> findFacultiesByColorOrName(String color, String name) {
+        getLogger("findFacultiesByColorOrName");
         return facultyRepository.findFacultiesByColorIgnoreCaseOrNameIgnoreCase(color, name);
     }
 
     public Faculty findFacultyByStudent(long id) {
+        getLogger("findFacultyByStudent");
         for (Faculty faculty : facultyRepository.findAll()) {
             for (Student student : faculty.getStudents()) {
                 if (student.getId() == id) {
@@ -54,5 +65,8 @@ public class FacultyService {
             }
         }
         return null;
+    }
+    private void getLogger(String methodName) {
+        logger.info("method called: " + methodName);
     }
 }
