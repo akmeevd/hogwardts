@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@Profile("default")
 public class InfoController {
 
     @Value("${server.port}")
