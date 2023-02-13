@@ -3,20 +3,15 @@ package ru.hogwardts.school.service;
 import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.hogwardts.school.model.Student;
-//import ru.hogwardts.school.model.StudentsByDescOrder;
 import ru.hogwardts.school.model.StudentsByDescOrder;
-import ru.hogwardts.school.repository.AvatarRepository;
 import ru.hogwardts.school.repository.StudentRepository;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 
 @Service
 public class StudentService {
@@ -89,6 +84,7 @@ public class StudentService {
     }
 
     private void getLogger(String methodName) {
-        logger.info("method called: " + methodName);
+        logger.debug("method called: " + methodName);
     }
+
 }

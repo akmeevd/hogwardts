@@ -77,6 +77,6 @@ public class AvatarService {
     }
 
     private void getLogger(String methodName) {
-        logger.info("method called: " + methodName);
+        logger.debug("method called: " + methodName);
     }
 }
