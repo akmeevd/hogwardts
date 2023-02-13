@@ -5,11 +5,9 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
-@Profile("default")
-public class InfoController {
-
+@Profile("test")
+public class InfoControllerTest {
     @Value("${server.port}")
     int port;
 
