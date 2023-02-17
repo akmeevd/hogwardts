@@ -3,16 +3,20 @@ package ru.hogwardts.school.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import ru.hogwardts.school.model.Faculty;
 import ru.hogwardts.school.model.Student;
 //import ru.hogwardts.school.model.StudentsByDescOrder;
 import ru.hogwardts.school.model.StudentsByDescOrder;
-import ru.hogwardts.school.repository.AvatarRepository;
 import ru.hogwardts.school.repository.StudentRepository;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.OptionalDouble;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.ForkJoinTask;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class StudentService {
@@ -79,6 +83,25 @@ public class StudentService {
     public List<StudentsByDescOrder> getFiveStudentsByDescOrder() {
         getLogger("getFiveStudentsByDescOrder");
         return studentRepository.getFiveStudentsByDescOrder();
+    }
+
+    //course-four-lesson-five
+    public List<String> getNamesOfStudentsByLetterA() {
+        List<Student> students = studentRepository.findAll();
+        return students.stream()
+                .parallel()
+                .filter(s -> s.getName().substring(0, 1).equalsIgnoreCase("a"))
+                .map(s -> s.getName().toUpperCase()).toList();
+    }
+
+    //course-four-lesson-five
+    public OptionalDouble getAverageAgeForAllStudents() {
+        List<Student> students = studentRepository.findAll();
+       return students
+               .stream()
+               .parallel()
+               .mapToDouble(Student::getAge)
+               .average();
     }
 
     private void getLogger(String methodName) {
