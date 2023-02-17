@@ -9,8 +9,11 @@ import ru.hogwardts.school.repository.FacultyRepository;
 import ru.hogwardts.school.repository.StudentRepository;
 
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @Service
@@ -47,7 +50,7 @@ public class FacultyService {
 
     public Collection<Faculty> findFacultiesByColor(String color) {
         getLogger("findFacultiesByColor");
-        return facultyRepository.findAll();
+        return facultyRepository.findFacultiesByColorIgnoreCase(color);
     }
 
     public Collection<Faculty> findFacultiesByColorOrName(String color, String name) {
@@ -65,6 +68,14 @@ public class FacultyService {
             }
         }
         return null;
+    }
+
+//course-four-lesson-five
+    public Faculty getFacultyWithLongestName() {
+        List<Faculty> faculties = facultyRepository.findAll();
+        return faculties
+                .stream()
+                .max(Comparator.comparing(faculty -> faculty.getName().length())).get();
     }
     private void getLogger(String methodName) {
         logger.debug("method called: " + methodName);
