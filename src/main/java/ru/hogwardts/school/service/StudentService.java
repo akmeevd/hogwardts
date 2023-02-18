@@ -81,6 +81,25 @@ public class StudentService {
         return studentRepository.getFiveStudentsByDescOrder();
     }
 
+    public void getSixStudentsByParallelThreads() {
+        List<Student> students = new ArrayList<>();
+        students.addAll(studentRepository.findAll());
+        System.out.println(students.get(0));
+        System.out.println(students.get(1));
+        new Thread(() -> {
+            System.out.println(students.get(2));
+            System.out.println(students.get(3));
+        }).start();
+        new Thread(() -> {
+            System.out.println(students.get(4));
+            System.out.println(students.get(5));
+        }).start();
+    }
+
+    public synchronized void getSixStudentsBySynchronizedParallelThreads() {
+        getSixStudentsByParallelThreads();
+    }
+
     private void getLogger(String methodName) {
         logger.debug("method called: " + methodName);
     }

@@ -70,4 +70,14 @@ public class StudentController {
     public List<StudentsByDescOrder> getFiveStudentsByDescOrder() {
         return students.getFiveStudentsByDescOrder();
     }
+
+    @GetMapping("six-students-by-parallel-threads")
+    public void getSixStudentsByParallelThreads() {
+        students.getSixStudentsByParallelThreads();
+    }
+
+    @GetMapping("six-students-by-synchronized-parallel-threads")
+    public void getSixStudentsBySynchronizedParallelThreads() {
+        students.getSixStudentsBySynchronizedParallelThreads();
+    }
 }
