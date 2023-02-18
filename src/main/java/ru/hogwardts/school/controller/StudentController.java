@@ -9,6 +9,9 @@ import ru.hogwardts.school.service.StudentService;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.OptionalDouble;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("student")
@@ -79,5 +82,25 @@ public class StudentController {
     @GetMapping("six-students-by-synchronized-parallel-threads")
     public void getSixStudentsBySynchronizedParallelThreads() {
         students.getSixStudentsBySynchronizedParallelThreads();
+    }
+
+    //course-four-lesson-five
+    @GetMapping("students-by-letter-a")
+    public List<String> getNamesOfStudentsByLetterA() {
+        return students.getNamesOfStudentsByLetterA();
+    }
+
+    //course-four-lesson-five
+    @GetMapping("average-age")
+    public OptionalDouble getAverageAgeForAllStudents() {
+        return students.getAverageAgeForAllStudents();
+    }
+
+    @GetMapping("sum")
+    public int getSum() {
+        int finishNumber = 1_000_000;
+        return IntStream
+                .range(1,1_000_000 + 1)
+                .sum();
     }
 }
