@@ -54,10 +54,4 @@ public class FacultyController {
     public Faculty findFacultyByStudent(@RequestParam long id) {
         return faculties.findFacultyByStudent(id);
     }
-
-    //course-four-lesson-five
-    @GetMapping("longest-name")
-    public Faculty getFacultyWithLongestName() {
-        return faculties.getFacultyWithLongestName();
-    }
 }
