@@ -13,6 +13,7 @@ import ru.hogwardts.school.repository.StudentRepository;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.OptionalDouble;
 
 @Service
 public class StudentService {
@@ -81,6 +82,30 @@ public class StudentService {
         return studentRepository.getFiveStudentsByDescOrder();
     }
 
+    //course-four-lesson-five
+    public List<String> getNamesOfStudentsByLetterA() {
+        List<Student> students = studentRepository.findAll();
+        return students.stream()
+                .parallel()
+                .filter(s -> s.getName().substring(0, 1).equalsIgnoreCase("a"))
+                .map(s -> s.getName().toUpperCase()).toList();
+    }
+
+    //course-four-lesson-five
+    public OptionalDouble getAverageAgeForAllStudents() {
+        List<Student> students = studentRepository.findAll();
+        return students
+                .stream()
+                .parallel()
+                .mapToDouble(Student::getAge)
+                .average();
+    }
+
+    private void getLogger(String methodName) {
+        logger.debug("method called: " + methodName);
+    }
+
+
     public void getSixStudentsByParallelThreads() {
         List<Student> students = new ArrayList<>();
         students.addAll(studentRepository.findAll());
@@ -97,11 +122,23 @@ public class StudentService {
     }
 
     public synchronized void getSixStudentsBySynchronizedParallelThreads() {
-        getSixStudentsByParallelThreads();
+        List<Student> students = new ArrayList<>();
+        students.addAll(studentRepository.findAll());
+        printStudentInConsole(students.get(0));
+        printStudentInConsole(students.get(1));
+        new Thread(() -> {
+            printStudentInConsole(students.get(2));
+            printStudentInConsole(students.get(3));
+        }).start();
+        new Thread(() -> {
+            printStudentInConsole(students.get(4));
+            printStudentInConsole(students.get(5));
+        }).start();
     }
 
-    private void getLogger(String methodName) {
-        logger.debug("method called: " + methodName);
+    public void printStudentInConsole(Student student) {
+        synchronized (studentRepository) {
+            System.out.println(student);
+        }
     }
-
 }
