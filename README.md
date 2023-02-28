@@ -1,5 +1,5 @@
 # <p style="color:blue;">*hogwarts*</p>
-<p style="color:blue;">hogwarts - is application created as coursework</p>
+<span style="color:blue;">hogwarts - is application created as coursework</span>
 ## *hogwarts gives posibility for CRUD-operations with:*
 * student
 * faculty
