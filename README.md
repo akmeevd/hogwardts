@@ -12,4 +12,4 @@ hogwarts - is application created as coursework
 - [get number of all students](http://localhost:8080/student/count-of-all-students/ "press" )
 - [get faculty with longest name](http://localhost:8080/faculty/longest-name/ "press")
 and much more...
-![Да будет с вами Гарри](C:\Users\User\IdeaProjects\hogwardts\avatarsDir\Student{id=6, name='Harry', age=14})
+![Да будет с вами Гарри](C:\Users\User\IdeaProjects\hogwardts\avatarsDir\Student{id=6, name='Harry', age=14}.jpg)
