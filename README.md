@@ -8,4 +8,4 @@ hogwarts - is application created as coursework
 * all is stored in database
 * different requsets help to extract interesting informations about students
 ## a few examples of URLs:
-[get all students](http://localhost:8080/student)
+[find student by id](http://localhost:8080/student/ "add student id")
