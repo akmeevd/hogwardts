@@ -1,4 +1,4 @@
-![Да будет с вами Гарри](https://s12.stc.all.kpcdn.net/afisha/msk/wp-content/uploads/sites/5/2021/01/1-14.jpg))
+![Да будет с вами Гарри](https://s12.stc.all.kpcdn.net/afisha/msk/wp-content/uploads/sites/5/2021/01/1-14.jpg)
 # *hogwarts*
 hogwarts - is application created as coursework
 ## *hogwarts gives posibility for CRUD-operations with:*
