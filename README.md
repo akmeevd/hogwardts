@@ -7,5 +7,3 @@ hogwarts - is application created as coursework
 ## database
 * all is stored in database
 * different requsets help to extract interesting informations about students
-    asdasd
-    asdasd
