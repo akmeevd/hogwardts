@@ -1,4 +1,4 @@
-# <span style="color:blue">*hogwarts*</span style>
+# <span style="color:blue">*hogwarts*</span>
 hogwarts - is application created as coursework
 ## *hogwarts gives posibility for CRUD-operations with:*
 * student
