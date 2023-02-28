@@ -12,3 +12,7 @@ hogwarts - is application created as coursework
 - [get number of all students](http://localhost:8080/student/count-of-all-students/ "press" )
 - [get faculty with longest name](http://localhost:8080/faculty/longest-name/ "press")
 and much more...
+if @GetMapping("longest-name")
+    public Faculty getFacultyWithLongestName() {
+        return faculties.getFacultyWithLongestName();
+    }
