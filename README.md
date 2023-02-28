@@ -1,5 +1,6 @@
-# <p style="color:blue;">*hogwarts*</p>
-<span style="color:blue;">hogwarts - is application created as coursework</span>
+![Да будет с вами Гарри](https://s12.stc.all.kpcdn.net/afisha/msk/wp-content/uploads/sites/5/2021/01/1-14.jpg))
+# *hogwarts*
+hogwarts - is application created as coursework
 ## *hogwarts gives posibility for CRUD-operations with:*
 * student
 * faculty
@@ -12,4 +13,3 @@
 - [get number of all students](http://localhost:8080/student/count-of-all-students/ "press" )
 - [get faculty with longest name](http://localhost:8080/faculty/longest-name/ "press")
 and much more...
-### ![Да будет с вами Гарри](https://s12.stc.all.kpcdn.net/afisha/msk/wp-content/uploads/sites/5/2021/01/1-14.jpg))
