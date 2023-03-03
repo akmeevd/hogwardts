@@ -24,8 +24,13 @@ public class StudentController {
     }
 
     @GetMapping("{id}")
-    public Student findStudent(@PathVariable long id) {
-        return students.findStudent(id);
+    public ResponseEntity<Student> findStudent(@PathVariable long id) {
+        try {
+            Student student = students.findStudent(id);
+            return ResponseEntity.ok(student);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping
@@ -40,8 +45,12 @@ public class StudentController {
 
     @DeleteMapping("{id}")
     public ResponseEntity<Student> deleteStudent(@PathVariable long id) {
-        students.deleteStudent(id);
-        return ResponseEntity.ok().build();
+        try {
+            students.deleteStudent(id);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping
@@ -74,6 +83,26 @@ public class StudentController {
         return students.getFiveStudentsByDescOrder();
     }
 
+    //course-four-lesson-five
+
+    @GetMapping("students-by-letter-a")
+    public List<String> getNamesOfStudentsByLetterA() {
+        return students.getNamesOfStudentsByLetterA();
+    }
+    //course-four-lesson-five
+
+    @GetMapping("average-age")
+    public OptionalDouble getAverageAgeForAllStudents() {
+        return students.getAverageAgeForAllStudents();
+    }
+    @GetMapping("sum")
+    public int getSum() {
+        int finishNumber = 1_000_000;
+        return IntStream
+                .range(1,1_000_000 + 1)
+                .sum();
+    }
+
     @GetMapping("six-students-by-parallel-threads")
     public void getSixStudentsByParallelThreads() {
         students.getSixStudentsByParallelThreads();
@@ -82,25 +111,5 @@ public class StudentController {
     @GetMapping("six-students-by-synchronized-parallel-threads")
     public void getSixStudentsBySynchronizedParallelThreads() {
         students.getSixStudentsBySynchronizedParallelThreads();
-    }
-
-    //course-four-lesson-five
-    @GetMapping("students-by-letter-a")
-    public List<String> getNamesOfStudentsByLetterA() {
-        return students.getNamesOfStudentsByLetterA();
-    }
-
-    //course-four-lesson-five
-    @GetMapping("average-age")
-    public OptionalDouble getAverageAgeForAllStudents() {
-        return students.getAverageAgeForAllStudents();
-    }
-
-    @GetMapping("sum")
-    public int getSum() {
-        int finishNumber = 1_000_000;
-        return IntStream
-                .range(1,1_000_000 + 1)
-                .sum();
     }
 }

@@ -47,7 +47,7 @@ public class FacultyService {
 
     public Collection<Faculty> findFacultiesByColor(String color) {
         getLogger("findFacultiesByColor");
-        return facultyRepository.findAll();
+        return facultyRepository.findFacultiesByColorIgnoreCase(color);
     }
 
     public Collection<Faculty> findFacultiesByColorOrName(String color, String name) {
