@@ -2,7 +2,7 @@
 # *hogwarts greetings*
 hogwarts - is educational project created as coursework
 
-by using this app we can enroll Harry Potter to Slytherin and expel Draco Malfoy from Hogwarts because of he bad boy
+by using this app we can enroll Harry Potter to Slytherin and expel Draco Malfoy from Hogwarts because he is bad
 
 ## *hogwarts gives posibility for CRUD-operations with models:*
 * student
