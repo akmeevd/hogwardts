@@ -14,4 +14,4 @@ by using this app we can enroll Harry Potter to Slytherin and expel Draco Malfoy
 - run app from dir target by command `java -Dspring.datasource.username=*** -Dspring.datasource.password=*** -jar hogwardts-0.0.1-SNAPSHOT.jar`,  *** - is username and password to DB
 - for app interface enter http://localhost:8080/swagger-ui/index.html
 
-![swagger](src/test/resources/picture/hogwarts_swagger.png)
+![swagger](src/main/resources/picture/hogwarts_swagger.png)
